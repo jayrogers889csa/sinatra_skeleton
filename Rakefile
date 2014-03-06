@@ -116,6 +116,12 @@ namespace :db do
   task :version do
     puts "Current version: #{ActiveRecord::Migrator.current_version}"
   end
+
+  desc "Reset the database at #{DB_NAME}"
+    task :reset do
+    exec('rake db:drop && rake db:create && rake db:migrate && rake db:seed')
+  end
+
 end
 
 desc 'Start IRB with application environment loaded'
@@ -123,13 +129,7 @@ task "console" do
   exec "irb -r./config/environment"
 end
 
-desc "Reset the database at #{DB_NAME}"
-task :reset do
-  Rake::Task["db:drop"].invoke
-  Rake::Task["db:create"].invoke
-  Rake::Task["db:migrate"].invoke
-  Rake::Task["db:seed"].invoke
-end
+
 
 desc "Run the specs"
 RSpec::Core::RakeTask.new(:spec)

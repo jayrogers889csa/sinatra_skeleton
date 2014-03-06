@@ -1,0 +1,38 @@
+class User < ActiveRecord::Base
+  has_many :designed_shirts, class_name: "Shirt", foreign_key: :designer_id
+  has_many :sales, through: :designed_shirts
+  has_many :clients, through: :designed_shirts, source: :purchasers
+
+  has_many :purchases, foreign_key: :purchaser_id
+  has_many :purchased_shirts, through: :purchases, source: :shirt
+end
+
+class Purchase < ActiveRecord::Base
+  belongs_to :purchaser, class_name: "User"
+  belongs_to :shirt
+end
+
+class Shirt < ActiveRecord::Base
+  belongs_to :designer, class_name: "User"
+
+  has_many :sales, class_name: "Purchase"
+  has_many :purchasers, through: :sales
+end
+
+
+class User
+  has_many :created_surveys, class_name: "Survey", foreign_key: "creator_id"
+  has_many :survey_completions
+  has_many :completed_surveys, through: :survey_completions, source: :survey
+end
+
+class Survey
+  belongs_to :creator, class_name: "User"
+  has_many :survey_completions
+  has_many :takers, through: :survey_completions, source: :user
+end
+
+class SurveyCompletion
+  belongs_to :user
+  belongs_to :survey
+end

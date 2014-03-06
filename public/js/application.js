@@ -1,7 +1,17 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $('#delete_account').on('click', function(event) {
+    event.preventDefault();
+
+    var url = $(this).attr('href');
+
+    $.get(url, function(serverResponse) {
+      $('#confirm_delete_message').html(serverResponse);
+    })
+  })
+
+  $(document).on('click', '#second_thoughts', function(event) {
+    event.preventDefault();
+    $('#confirm_delete_message').children().remove();
+  })
 });

@@ -2,17 +2,17 @@
   <a href="/">&larr; Home</a>
 </div>
 
-<div class="container"
+<div class="container">
   <form id="new_user" action="/user/sign_up" method="POST">
 
       <span>Email:</span>
-      <input type="text" placeholder="Email" name="email">
+      <input type="text" placeholder="Email" name="user[email]">
       <br>
       <span>Password:</span>
-      <input type="password" placeholder="Password" name="password">
+      <input type="password" placeholder="Password" name="user[password]">
       <br>
       <span>Password Confirmation:</span>
-      <input type="password" placeholder="Password Confirmation" name="password_confirmation">
+      <input type="password" placeholder="Password Confirmation" name="user[password_confirmation]">
       <br>
       <input type="submit" value="Sign Up">
   </form>

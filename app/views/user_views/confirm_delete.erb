@@ -1,0 +1,5 @@
+<p>Are you sure?</p>
+
+<form id="confirm_delete" method="post" action="/user/<%= current_user.id %>/delete"><input type="submit" name="submit" value="Yes, I'm sure"></form>
+<br>
+<a id="second_thoughts" href="/user/<%= current_user.id %>/edit">Wait, I'm having second thoughts.</a>

@@ -2,18 +2,20 @@
   <a href="/">&larr; Home</a>
 </div>
 
-<div class="container"
-  <form id="sign_in_user" action="/user/login" method="POST">
-
+<div class="container">
+  <form id="update_user" action="/user/<%= current_user.id %>/update" method="POST">
       <span>Email:</span>
-      <input type="text" placeholder="<%= current_user.email %>" name="email">
+      <input type="text" value="<%= current_user.email %>" name="user[email]">
       <br>
       <span>Password:</span>
-      <input type="password" placeholder="Password" name="password">
+      <input type="password" placeholder="Password" name="user[password]">
       <br>
       <span>Password Confirmation:</span>
-      <input type="password" placeholder="Password Confirmation" name="password_confirmation">
+      <input type="password" placeholder="Password Confirmation" name="user[password_confirmation]">
       <br>
-      <input type="submit" value="Sign In">
+      <input type="submit" value="Save Changes">
+      <br>
   </form>
+  <button><a id="delete_account" href="/user/<%= current_user.id %>/delete">Delete Account</a></button>
+  <div id="confirm_delete_message"></div>
 </div>

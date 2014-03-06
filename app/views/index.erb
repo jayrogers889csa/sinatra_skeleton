@@ -1,5 +1,9 @@
 <div class="container">
   <h1>Welcome to CRUD APP!</h1>
-  <a href="/new_user">Sign Up!</a><br>
-  <a href="/user/sign_in">Sign In!</a>
+  <% if session[:user_id] == nil %>
+    <a href="/new_user">Sign Up!</a><br>
+    <a href="/user/sign_in">Sign In!</a>
+  <% else %>
+    <a href="/user/sign_out">Log Out</a>
+  <% end %>
 </div>
